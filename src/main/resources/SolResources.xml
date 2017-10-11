@@ -10,8 +10,8 @@
 		<property name="environment">
 			<map>
 				<!-- URL must be passed as System Variable, if included here it acts as the precedent and ignores system variable -->
-				<!-- <entry key="java.naming.provider.url" value="smf://160.101.136.65:55555" />  --> 
-				<entry key="java.naming.provider.url" value="smf://test-cluster-svc.vmr-openshift-demo.svc:55555" />
+				<!-- <entry key="java.naming.provider.url" value="smf://160.101.136.65:55555" /> -->
+				<!--  <entry key="java.naming.provider.url" value="smf://test-cluster-svc.vmr-openshift-demo.svc:55555" /> -->
 				<entry key="java.naming.factory.initial"
 					value="com.solacesystems.jndi.SolJNDIInitialContextFactory" />
 				<entry key="java.naming.security.principal" value="heinz1@heinzvpn" /> 

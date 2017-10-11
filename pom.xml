@@ -15,6 +15,13 @@
 
 	<build>
 		<sourceDirectory>src</sourceDirectory>
+		<resources>
+			<resource>
+				<!-- <directory>${basedir}/src//main/resources/XML_Schema</directory> -->
+				<directory>${basedir}/src/main/resources/XML_Schema</directory>
+				<targetPath>XML_Schema</targetPath>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -80,12 +87,22 @@
 			<version>0.1.2</version>
 		</dependency>
 
-		<dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-api</artifactId> 
-			<version>1.8.0-alpha2</version> </dependency> 
-			
-		 <dependency> <groupId>com.solace.labs.spring.boot</groupId> <artifactId>solace-jms-spring-boot-starter</artifactId> 
-			<version>0.1.2</version> </dependency> <dependency> <groupId>org.slf4j</groupId> 
-			<artifactId>slf4j-simple</artifactId> <version>1.8.0-alpha1</version> </dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.8.0-alpha2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.solace.labs.spring.boot</groupId>
+			<artifactId>solace-jms-spring-boot-starter</artifactId>
+			<version>0.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.8.0-alpha1</version>
+		</dependency>
 
 
 		<!-- <dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-simple</artifactId> 
