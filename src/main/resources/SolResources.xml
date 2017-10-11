@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jms="http://www.springframework.org/schema/jms"
+	xsi:schemaLocation="http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"> <!-- The section is used to configure all of the JNDI Initial Context information 
+		to connect in the JMS JNDI Provider -->
+	<bean id="solaceJndiTemplate" class="org.springframework.jndi.JndiTemplate"
+		lazy-init="default" autowire="default">
+		<property name="environment">
+			<map>
+				<entry key="java.naming.provider.url" value="smf://160.101.136.65:55555" />
+				<entry key="java.naming.factory.initial"
+					value="com.solacesystems.jndi.SolJNDIInitialContextFactory" />
+				<entry key="java.naming.security.principal" value="heinz1@heinzvpn" /> 
+				<entry key="java.naming.security.credentials" value="heinz1" />
+			</map>
+		</property>
+	</bean>
+	<bean id="solaceConnectionFactory" class="org.springframework.jndi.JndiObjectFactoryBean"
+		lazy-init="default" autowire="default">
+		<property name="jndiTemplate" ref="solaceJndiTemplate" />
+		<property name="jndiName" value="heinzCF" />
+	</bean>
+	<bean id="solaceCachedConnectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory" > 
+		<property name="targetConnectionFactory" ref="solaceConnectionFactory" />
+		<property name="sessionCacheSize" value="10" /> 
+	</bean>
+	<bean id="destination" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiTemplate" ref="solaceJndiTemplate" />
+		<property name="jndiName" value="bank/data/xml" />
+	</bean>
+	
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="solaceCachedConnectionFactory" /> 
+		<property name="defaultDestination" ref="destination" />
+
+		<property name="deliveryPersistent" value="true" />
+		<property name="explicitQosEnabled" value="true" />
+		<property name="destinationResolver" ref="jmsDestResolver"/>
+		<property name="pubSubDomain" value="true" />
+	</bean>
+	<!-- <bean id="jmsDestResolver"  class=" org.springframework.jms.support.destination.DynamicDestinationResolver"> -->
+	<bean id="jmsDestResolver"  class=" org.springframework.jms.support.destination.DynamicDestinationResolver">
+	</bean>
+	
+	<bean id="messageProducer" class="com.solace.openshift.demo.datagenerator.jms.Bank_TestDataGeneratorOLBMobile_JMS">
+		<property name="jmsTemplate" 
+		ref="jmsTemplate" 		
+	/></bean>
+	
+
+	
+</beans>
