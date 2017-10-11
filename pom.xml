@@ -14,8 +14,22 @@
 
 
 	<build>
+		<!--   <sourceDirectory>src</sourceDirectory> -->
 		<sourceDirectory>src</sourceDirectory>
-		
+<!-- 
+                <resources>
+                        <resource>
+                          
+                                <directory>${basedir}/src/main/resources</directory>
+                                <targetPath>XML_Schema</targetPath>
+                        </resource>
+                        <resource>
+                          
+                                <directory>${basedir}/src/main/resources/</directory>
+                                <targetPath>SOL_RESOURCES</targetPath>
+                        </resource>
+                </resources>
+-->		
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -74,11 +88,6 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 			<version>1.5.7.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>com.solace.labs.spring.boot</groupId>
-			<artifactId>solace-jms-spring-boot-starter</artifactId>
-			<version>0.1.2</version>
 		</dependency>
 
 		<dependency>

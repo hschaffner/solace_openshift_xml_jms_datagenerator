@@ -3,8 +3,10 @@ package com.bank.ecs;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.util.Arrays;
 
 import javax.xml.namespace.QName;
@@ -22,7 +24,7 @@ import javax.xml.ws.WebServiceFeature;
  * 
  */
 //@WebServiceClient(name = "eventInputBundleImplService", targetNamespace = "http://ECS.BANK.COM", wsdlLocation = "file:/opt/app-root/src/source/XML_Schema/eventInputBundleImpl.wsdl")
-@WebServiceClient(name = "eventInputBundleImplService", targetNamespace = "http://ECS.BANK.COM", wsdlLocation = "file:./XML_Schema/eventInputBundleImpl.wsdl")
+@WebServiceClient(name = "eventInputBundleImplService", targetNamespace = "http://ECS.BANK.COM", wsdlLocation = "/BOOT-INF/classes/SOL_RESOURCES/XML_Schema/eventInputBundleImpl.wsdl")
 public class EventInputBundleImplService
     extends Service
 {
@@ -46,11 +48,23 @@ public class EventInputBundleImplService
         	  }
         	});
         	System.out.println(Arrays.toString(directories));
+        	
+        	String path = EventInputBundleImplService.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        	String decodedPath = URLDecoder.decode(path, "UTF-8");;
+			
+			System.out.println("++++++++++++++++++ Current Jar Path: " + decodedPath);
+        	
         		//url = new URL("file:/opt/app-root/src/source/XML_Schema/eventInputBundleImpl.wsdl");
-        		url = new URL("file:./XML_Schema/eventInputBundleImpl.wsdl");
+        		//url = new URL("file:XML_Schema/XML_Schema/eventInputBundleImpl.wsdl");
+        		//url = new URL(getClass().getResource("com/test/services/LoadRunner/FireCollection/fire.txt"));
+			url = new URL("jar:" + decodedPath + "XML_Schema/eventInputBundleImpl.wsdl");
+			
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
-        }
+        } catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
         EVENTINPUTBUNDLEIMPLSERVICE_WSDL_LOCATION = url;
         EVENTINPUTBUNDLEIMPLSERVICE_EXCEPTION = e;
     }
