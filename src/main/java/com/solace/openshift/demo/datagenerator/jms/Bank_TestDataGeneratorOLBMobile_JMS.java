@@ -234,7 +234,7 @@ public class Bank_TestDataGeneratorOLBMobile_JMS  {
 
 			System.out.println("Sleep in millis between messages; " + 1000/Integer.valueOf(rate));
 
-			Thread.sleep(100000000);
+			//Thread.sleep(100000000);
 
 			while(true) {
 
