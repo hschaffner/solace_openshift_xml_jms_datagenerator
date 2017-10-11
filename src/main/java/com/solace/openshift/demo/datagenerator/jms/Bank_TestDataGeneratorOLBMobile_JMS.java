@@ -89,6 +89,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 //import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.core.env.MapPropertySource;
+import org.springframework.core.env.MutablePropertySources;
+import org.springframework.core.env.StandardEnvironment;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
@@ -143,7 +147,6 @@ public class Bank_TestDataGeneratorOLBMobile_JMS  {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] { "SolResources.xml" });
 		producer = (Bank_TestDataGeneratorOLBMobile_JMS) context.getBean("messageProducer");
 		context.close();
-		
 		SpringApplication.run(Bank_TestDataGeneratorOLBMobile_JMS.class, args);
 		
 		
@@ -231,7 +234,7 @@ public class Bank_TestDataGeneratorOLBMobile_JMS  {
 
 			System.out.println("Sleep in millis between messages; " + 1000/Integer.valueOf(rate));
 
-
+			Thread.sleep(100000000);
 
 			while(true) {
 
