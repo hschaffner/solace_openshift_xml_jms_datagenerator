@@ -22,6 +22,9 @@ import javax.xml.ws.WebServiceFeature;
  * JAX-WS RI 2.2.4-b01
  * Generated source version: 2.2
  * 
+ * 
+ * Was modified to extract WSDL URL from Jar File
+ * 
  */
 //@WebServiceClient(name = "eventInputBundleImplService", targetNamespace = "http://ECS.BANK.COM", wsdlLocation = "file:/opt/app-root/src/source/XML_Schema/eventInputBundleImpl.wsdl")
 @WebServiceClient(name = "eventInputBundleImplService", targetNamespace = "http://ECS.BANK.COM", wsdlLocation = "/BOOT-INF/classes/SOL_RESOURCES/XML_Schema/eventInputBundleImpl.wsdl")
@@ -55,8 +58,7 @@ public class EventInputBundleImplService
 			System.out.println("++++++++++++++++++ Current Jar Path: " + decodedPath);
         	
         		//url = new URL("file:/opt/app-root/src/source/XML_Schema/eventInputBundleImpl.wsdl");
-        		//url = new URL("file:XML_Schema/XML_Schema/eventInputBundleImpl.wsdl");
-        		//url = new URL(getClass().getResource("com/test/services/LoadRunner/FireCollection/fire.txt"));
+
 			url = new URL("jar:" + decodedPath + "XML_Schema/eventInputBundleImpl.wsdl");
 			
         } catch (MalformedURLException ex) {
